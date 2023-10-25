@@ -319,10 +319,15 @@ def down(state):
 
 # NEW FUNCTIONS TO DEFINE
 def undo(state):
-    if pop_record(stack_of_records) == (None,None):
-        return pop_record(stack_of_records)
-    return stack_of_records[-1]
-
+    last_record = pop_record(stack_of_records)
+    if last_record == (None, None):
+        return state, False
+    else:
+        last_matrix, last_increment = last_record
+        current_score = get_score(state)
+        updated_score = current_score - last_increment
+        updated_state = make_state(last_matrix, updated_score, stack_of_records)
+        return updated_state, True
 
 # UNCOMMENT THE FOLLOWING LINES TO START THE GAME (WITH UNDO)
 game_logic = {
