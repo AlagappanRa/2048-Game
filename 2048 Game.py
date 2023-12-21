@@ -301,8 +301,6 @@ def fn(func,state):
         records = push_record(new_record, stack_of_records)
       
     game_state = make_state(matrix, final_score, records)
-    print(stack_of_records)
-    print(stack_of_records[-1])
     return game_state, is_valid
     
 def left(state):
